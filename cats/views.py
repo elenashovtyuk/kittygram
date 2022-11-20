@@ -1,28 +1,47 @@
-from rest_framework import generics
-# from rest_framework.response import Response
-# from rest_framework import status
+from rest_framework import viewsets
+
 
 from .models import Cat
 from .serializers import CatSerializer
 
 
-# создаем первый класс на основе дженерика,
-# который будет создавать новый объект
-# или возвращать всю коллекцию объектов
-class CatList(generics.ListCreateAPIView):
-    # в этом класса создаем только два поля
-    # набор записей, queryset
+# создаем класс-наследник ModelViewSet
+# в этом классе должны быть описаны 2 поля
+# queryset и serializer_class
+class CatViewSet(viewsets.ModelViewSet):
     queryset = Cat.objects.all()
-    # сериализатор
     serializer_class = CatSerializer
 
+# Готов класс, который обработает
+# все шесть типичных действий
 
-# создаем второй класс на основе другого дженерика,
-# который возвращает, обновляет, удаляет
-# объекты модели по одному
-class CatDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Cat.objects.all()
-    serializer = CatSerializer
+
+
+
+
+
+
+
+
+
+
+# # создаем первый класс на основе дженерика,
+# # который будет создавать новый объект
+# # или возвращать всю коллекцию объектов
+# class CatList(generics.ListCreateAPIView):
+#     # в этом класса создаем только два поля
+#     # набор записей, queryset
+#     queryset = Cat.objects.all()
+#     # сериализатор
+#     serializer_class = CatSerializer
+
+
+# # создаем второй класс на основе другого дженерика,
+# # который возвращает, обновляет, удаляет
+# # объекты модели по одному
+# class CatDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Cat.objects.all()
+#     serializer = CatSerializer
 
 
 # # все операции CRUD при использовании view-классов принято разделять
